@@ -2,9 +2,12 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: "http://localhost:8080", // <-- match the webpack-dev-server port
+    baseUrl: "http://localhost:8080",
     specPattern: "cypress/e2e/**/*.cy.js",
-    supportFile: "cypress/support/e2e.js",
-    setupNodeEvents(on, config) {},
+    supportFile: "cypress/support/e2e.js", 
+    setupNodeEvents(on, config) {
+      return config;
+    },
+    defaultCommandTimeout: 8000,
   },
 });
