@@ -50,7 +50,7 @@ const App = () => {
   // Build calendar grid
   const buildCalendar = () => {
     const weeks = [];
-    let currentDay = 1 - startDay; 
+    let currentDay = 1 - startDay;
     while (currentDay <= daysInMonth) {
       const week = [];
       for (let i = 0; i < 7; i++) {
@@ -70,10 +70,13 @@ const App = () => {
 
   return (
     <div id="main">
-      <h1 id="heading" style={{ color: "skyblue" }}>Calendar</h1>
+      <h1 id="heading" data-cy="heading" style={{ color: "skyblue" }}>
+        Calendar
+      </h1>
 
       <select
         id="month-dropdown"
+        data-cy="month-dropdown"
         value={month}
         onChange={(e) => setMonth(Number(e.target.value))}
       >
@@ -83,9 +86,11 @@ const App = () => {
           </option>
         ))}
       </select>
+
       {isEditing ? (
         <input
           id="year-input"
+          data-cy="year-input"
           type="number"
           value={year}
           onChange={handleYearChange}
@@ -94,11 +99,22 @@ const App = () => {
           autoFocus
         />
       ) : (
-        <span id="year" onDoubleClick={handleYearDoubleClick}>
+        <span
+          id="year"
+          data-cy="year"
+          tabIndex="0"
+          onDoubleClick={handleYearDoubleClick}
+        >
           {year}
         </span>
       )}
-      <table id="days-table" border="1" style={{ marginTop: "10px", borderCollapse: "collapse" }}>
+
+      <table
+        id="days-table"
+        data-cy="days-table"
+        border="1"
+        style={{ marginTop: "10px", borderCollapse: "collapse" }}
+      >
         <thead>
           <tr>
             <th>Sun</th>
@@ -114,7 +130,10 @@ const App = () => {
           {calendar.map((week, i) => (
             <tr key={i}>
               {week.map((day, j) => (
-                <td key={j} style={{ textAlign: "center", width: "40px", height: "40px" }}>
+                <td
+                  key={j}
+                  style={{ textAlign: "center", width: "40px", height: "40px" }}
+                >
                   {day}
                 </td>
               ))}
@@ -125,16 +144,24 @@ const App = () => {
 
       {/* Navigation buttons */}
       <div style={{ marginTop: "10px" }}>
-        <button id="prev-year-btn" onClick={prevYear}>
+        <button id="prev-year-btn" data-cy="prev-year-btn" onClick={prevYear}>
           {"<<"}
         </button>
-        <button id="prev-month-btn" onClick={prevMonth}>
+        <button
+          id="prev-month-btn"
+          data-cy="prev-month-btn"
+          onClick={prevMonth}
+        >
           {"<"}
         </button>
-        <button id="next-month-btn" onClick={nextMonth}>
+        <button
+          id="next-month-btn"
+          data-cy="next-month-btn"
+          onClick={nextMonth}
+        >
           {">"}
         </button>
-        <button id="next-year-btn" onClick={nextYear}>
+        <button id="next-year-btn" data-cy="next-year-btn" onClick={nextYear}>
           {">>"}
         </button>
       </div>
